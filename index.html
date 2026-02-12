@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Chotu Don ❤️</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+/* Cinematic Background */
+.bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url("us.jpg") no-repeat center center/cover;
+  animation:zoom 20s infinite alternate ease-in-out;
+  z-index:-2;
+}
+
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* Dark Romantic Overlay */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(4px);
+  z-index:-1;
+}
+
+h1{
+  font-size:48px;
+  margin-top:90px;
+}
+
+#message{
+  font-size:22px;
+  padding:0 20px;
+  min-height:60px;
+}
+
+button{
+  font-size:22px;
+  padding:12px 30px;
+  margin:20px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.yes{
+  background:white;
+  color:#ff4d6d;
+  box-shadow:0 0 25px white;
+}
+
+.yes:hover{
+  transform:scale(1.2);
+}
+
+.no{
+  background:#333;
+  color:white;
+  position:absolute;
+}
+
+.heart{
+  position:absolute;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(100vh);opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.firework{
+  position:absolute;
+  font-size:35px;
+  animation:explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+  0%{transform:scale(1);}
+  100%{transform:scale(3);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<h1>My Chotu Don ❤️</h1>
+<div id="message"></div>
+
+<h1>Will You Be My Valentine? 💖</h1>
+
+<button class="yes" onclick="celebrate()">Yes ❤️</button>
+<button class="no" onmouseover="moveNo(this)">No 💔</button>
+
+<h2 id="countdown"></h2>
+
+<script>
+
+/* Typewriter Love Letter */
+const text = "You are my peace, my strength, my favorite notification, my forever person.";
+let i=0;
+function typeWriter(){
+  if(i<text.length){
+    document.getElementById("message").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(typeWriter,50);
+  }
+}
+typeWriter();
+
+/* Countdown */
+const targetDate = new Date("Feb 14, 2026 00:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const distance=targetDate-now;
+  const days=Math.floor(distance/(1000*60*60*24));
+  document.getElementById("countdown").innerHTML="⏳ "+days+" days until our special day 💕";
+},1000);
+
+/* No Button */
+let noSize=22;
+function moveNo(btn){
+  btn.style.left=Math.random()*80+"vw";
+  btn.style.top=Math.random()*80+"vh";
+  noSize-=2;
+  btn.style.fontSize=noSize+"px";
+}
+
+/* Celebrate */
+function celebrate(){
+  document.body.innerHTML=`
+  <h1 style='margin-top:150px; font-size:55px;'>
+  I Love You So Much, Chotu Don ❤️<br><br>
+  💍 Will You Be Mine Forever? 💕
+  </h1>
+  `;
+  fireworks();
+}
+
+/* Fireworks */
+function fireworks(){
+  for(let i=0;i<30;i++){
+    const fw=document.createElement("div");
+    fw.classList.add("firework");
+    fw.innerHTML="🎆";
+    fw.style.left=Math.random()*100+"vw";
+    fw.style.top=Math.random()*80+"vh";
+    document.body.appendChild(fw);
+    setTimeout(()=>fw.remove(),1000);
+  }
+}
+
+/* Floating Hearts */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
